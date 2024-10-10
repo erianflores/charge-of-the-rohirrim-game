@@ -1,0 +1,29 @@
+#game-area {
+  width: 1000px;
+  height: 600px;
+  border: 2px solid #000;
+  margin: o auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game-intro {
+  width: 100%;
+  height: 100%;
+  background-image: url(../Images/Minas\ Tirith.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#start-button {
+  width: 125px;
+  height: 40px;
+  position: absolute;
+  bottom: 70px;
+  right: 200px;
+}
