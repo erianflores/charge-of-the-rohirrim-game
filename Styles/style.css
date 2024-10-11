@@ -27,3 +27,14 @@
   bottom: 70px;
   right: 200px;
 }
+
+#game-screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-image: url(../Images/Rohirrim\ charge\ landscape.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
