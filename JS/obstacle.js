@@ -20,7 +20,7 @@ class Obstacle {
     this.gameScreen.appendChild(this.element);
   }
   move() {
-    this.left += 3;
+    this.left -= 3;
     this.updatePosition();
   }
 

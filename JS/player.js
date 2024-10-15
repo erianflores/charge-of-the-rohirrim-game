@@ -17,4 +17,16 @@ class Player {
 
     this.gameScreen.appendChild(this.element);
   }
+
+  move() {
+    this.left += this.directionX;
+    this.top += this.directionY;
+
+    this.updatePosition();
+  }
+
+  updatePosition() {
+    this.element.style.top = `${this.top}px`;
+    this.element.style.left = `${this.left}px`;
+  }
 }

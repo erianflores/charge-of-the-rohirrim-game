@@ -7,7 +7,9 @@ class Game {
 
     this.height = 600;
     this.width = 1000;
-    this.obstacle = [new Obstacle()];
+    this.obstacles = [new Obstacle()];
+    this.gameLoopFrequency = 1000 / 60;
+    this.gameIsOver = false;
   }
 
   start() {
@@ -16,5 +18,20 @@ class Game {
 
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
+
+    this.gameIntervalId = setInterval(() => {
+      this.gameLoop();
+    }, this.gameLoopFrequency);
+  }
+  gameLoop() {
+    this.update();
+    if (this.gameIsOver === true) {
+      clearInterval(this.gameIntervalId);
+    }
+  }
+
+  update() {
+    this.obstacles.forEach((obstacle) => obstacle.move());
+    this.player.move();
   }
 }
