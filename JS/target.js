@@ -1,9 +1,6 @@
 class Target {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen");
-    // this.positionsY = [50 - 550];
-    // this.randomIndex = Math.floor(Math.random() * this.positionsY.length);
-    // this.top = this.positionsY[this.randomIndex];
     const minY = 50;
     const maxY = 550;
     this.top = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
@@ -12,7 +9,7 @@ class Target {
     this.height = 80;
     this.element = document.createElement("img");
     this.element.style.position = "absolute";
-    this.element.src = "../Images/Orc.JPG";
+    this.element.src = "../Images/Orc.png";
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.top = `${this.top}px`;

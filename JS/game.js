@@ -15,7 +15,14 @@ class Game {
     this.lives = 3;
     this.counter = 0;
 
-    this.target = [new Target()];
+    this.scoreElement = document.querySelector("#score");
+    this.livesElement = document.querySelector("#lives");
+    this.finalScoreElement = document.querySelector("#final-score");
+
+    this.targets = [new Target()];
+
+    this.nazgul = new Audio("../Audio/Nazgul.mov");
+    this.mainSong = new Audio("../Audio/Rohan Theme.mp3");
   }
 
   start() {
@@ -41,8 +48,11 @@ class Game {
     // this.obstacles.forEach((obstacle) => obstacle.move());
     this.player.move();
 
-    if (this.counter % 160 === 0) {
+    if (this.counter % 100 === 0) {
       this.obstacles.push(new Obstacle());
+    }
+    if (this.counter % 120 === 0) {
+      this.targets.push(new Target());
     }
 
     for (let i = 0; i < this.obstacles.length; i++) {
@@ -57,6 +67,22 @@ class Game {
         currentObstacle.element.remove();
         this.lives--;
         this.livesElement.innerText = this.lives;
+        this.nazgul.play();
+      }
+    }
+
+    for (let i = 0; i < this.targets.length; i++) {
+      const currentTarget = this.targets[i];
+      currentTarget.move();
+
+      const didCollideWithTarget = this.player.didCollide(currentTarget);
+      console.log("did it collide with target", didCollideWithTarget);
+
+      if (didCollideWithTarget) {
+        this.targets.splice(i, 1);
+        currentTarget.element.remove();
+        this.score += 1;
+        this.scoreElement.innerText = this.score;
       }
     }
 
@@ -69,6 +95,8 @@ class Game {
       });
       this.gameScreen.style.display = "none";
       this.endScreen.style.display = "block";
+
+      this.finalScoreElement.innerText = this.score;
     }
   }
 }

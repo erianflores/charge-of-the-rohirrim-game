@@ -36,6 +36,23 @@
   right: 160px;
 }
 
+#sound-button {
+  width: 40px;
+  height: 40px;
+  background-image: url(../Images/pngegg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+  position: fixed;
+  bottom: 40px;
+  left: 80px;
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+}
+
 #game-screen {
   display: none;
   width: 100%;

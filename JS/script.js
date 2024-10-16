@@ -1,6 +1,8 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
+  const soundButton = document.getElementById("sound-button");
+  const mainSong = new Audio("../Audio/Rohan Theme.mp3");
 
   let myGame;
 
@@ -12,18 +14,22 @@ window.onload = function () {
     window.location.reload();
   });
 
+  soundButton.addEventListener("click", () => {
+    mainSong.play();
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.code === "ArrowRight") {
       myGame.player.directionX = 3;
     }
     if (event.code === "ArrowLeft") {
-      myGame.player.directionX = -3;
+      myGame.player.directionX = -1;
     }
     if (event.code === "ArrowUp") {
-      myGame.player.directionY = -3;
+      myGame.player.directionY = -2;
     }
     if (event.code === "ArrowDown") {
-      myGame.player.directionY = 3;
+      myGame.player.directionY = 2;
     }
   });
 
