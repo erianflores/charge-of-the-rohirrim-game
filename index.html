@@ -13,22 +13,22 @@
   <body>
     <div id="game-area">
       <div id="game-intro">
-        <!-- <img
-        src="./Images/Minas Tirith.jpg"
-        alt="Minastirith"
-        class="Mainscreen"
-      /> -->
         <button id="start-button">Start the charge!!</button>
       </div>
 
-      <div id="game-screen"></div>
+      <div id="game-screen" class="game-screen">
+        <h2>Stats</h2>
+        <p>Score: <span id="score">0</span></p>
+        <p>Lives: <span id="lives">3</span></p>
+      </div>
 
-      <div id="game-end"></div>
+      <div id="end-screen"></div>
     </div>
 
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
     <script type="text/javascript" src="js/obstacle.js"></script>
+    <script type="text/javascript" src="js/target.js"></script>
   </body>
 </html>

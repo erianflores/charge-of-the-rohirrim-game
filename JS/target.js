@@ -1,4 +1,4 @@
-class Obstacle {
+class Target {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen");
     // this.positionsY = [50 - 550];
@@ -12,7 +12,7 @@ class Obstacle {
     this.height = 80;
     this.element = document.createElement("img");
     this.element.style.position = "absolute";
-    this.element.src = "../Images/Nazgul Fying.png";
+    this.element.src = "../Images/Orc.JPG";
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.top = `${this.top}px`;
