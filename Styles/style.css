@@ -28,6 +28,14 @@
   right: 200px;
 }
 
+#restart-button {
+  width: 125px;
+  height: 40px;
+  position: absolute;
+  bottom: 220px;
+  right: 160px;
+}
+
 #game-screen {
   display: none;
   width: 100%;
