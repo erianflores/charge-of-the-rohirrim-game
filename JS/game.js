@@ -22,7 +22,8 @@ class Game {
     this.targets = [new Target()];
 
     this.nazgul = new Audio("../Audio/Nazgul.mov");
-    this.mainSong = new Audio("../Audio/Rohan Theme.mp3");
+    this.urukHaiSong = new Audio("../Audio/Uruk Hai song.mov");
+    this.orcSound = new Audio("../Audio/Orc sound.m4a");
   }
 
   start() {
@@ -83,20 +84,30 @@ class Game {
         currentTarget.element.remove();
         this.score += 1;
         this.scoreElement.innerText = this.score;
+        this.orcSound.play();
       }
     }
 
     if (this.lives === 0) {
       console.log("you died, you lost all your lives");
-      this.gameIsOver = true;
-      this.player.element.remove();
-      this.obstacles.forEach((oneObstacle) => {
-        oneObstacle.element.remove();
-      });
-      this.gameScreen.style.display = "none";
-      this.endScreen.style.display = "block";
-
-      this.finalScoreElement.innerText = this.score;
+      this.endGame();
     }
+  }
+
+  endGame() {
+    this.gameIsOver = true;
+
+    mainSong.pause();
+    mainSong.currentTime = 0;
+
+    this.player.element.remove();
+    this.obstacles.forEach((oneObstacle) => {
+      oneObstacle.element.remove();
+    });
+    this.gameScreen.style.display = "none";
+    this.endScreen.style.display = "block";
+    this.urukHaiSong.play();
+
+    this.finalScoreElement.innerText = this.score;
   }
 }

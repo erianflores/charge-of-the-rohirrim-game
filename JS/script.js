@@ -1,8 +1,9 @@
+const mainSong = new Audio("../Audio/Rohan Theme.mp3");
+
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
   const soundButton = document.getElementById("sound-button");
-  const mainSong = new Audio("../Audio/Rohan Theme.mp3");
 
   let myGame;
 
