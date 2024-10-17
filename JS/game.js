@@ -4,7 +4,7 @@ class Game {
     this.gameScreen = document.querySelector("#game-screen");
     this.endScreen = document.querySelector("#end-screen");
     this.livesElement = document.querySelector("#lives");
-    this.player = new Player(90, 280, 80, 80, "../Images/King Theoden.png");
+    this.player = new Player(90, 280, 80, 80, "./Images/King Theoden.png");
 
     this.height = 600;
     this.width = 1000;
@@ -21,9 +21,9 @@ class Game {
 
     this.targets = [new Target()];
 
-    this.nazgul = new Audio("../Audio/Nazgul.mov");
-    this.urukHaiSong = new Audio("../Audio/Uruk Hai song.mov");
-    this.orcSound = new Audio("../Audio/Orc sound.m4a");
+    this.nazgul = new Audio("./Audio/Nazgul.mov");
+    this.urukHaiSong = new Audio("./Audio/Uruk Hai song.mov");
+    this.orcSound = new Audio("./Audio/Orc sound.m4a");
   }
 
   start() {

@@ -9,7 +9,7 @@ class Target {
     this.height = 80;
     this.element = document.createElement("img");
     this.element.style.position = "absolute";
-    this.element.src = "../Images/Orc.png";
+    this.element.src = "./Images/Orc.png";
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.top = `${this.top}px`;

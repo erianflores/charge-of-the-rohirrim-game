@@ -1,4 +1,4 @@
-const mainSong = new Audio("../Audio/Rohan Theme.mp3");
+const mainSong = new Audio("./Audio/Rohan Theme.mp3");
 
 window.onload = function () {
   const startButton = document.getElementById("start-button");
