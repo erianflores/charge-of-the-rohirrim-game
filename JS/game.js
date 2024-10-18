@@ -45,21 +45,37 @@ class Game {
     }
   }
 
+  checkCollision(obj1, obj2, buffer = 10) {
+    return (
+      obj1.x < obj2.x + obj2.width + buffer &&
+      obj1.x + obj1.width > obj2.x - buffer &&
+      obj1.y < obj2.y + obj2.height + buffer &&
+      obj1.y + obj1.height > obj2.y - buffer
+    );
+  }
+
   update() {
     this.counter++;
     // this.obstacles.forEach((obstacle) => obstacle.move());
     this.player.move();
 
-    if (this.counter % 100 === 0) {
-      this.obstacles.push(new Obstacle());
+    if (this.counter % 60 === 0) {
+      this.spawnObstacle();
     }
-    if (this.counter % 120 === 0) {
-      this.targets.push(new Target());
+    if (this.counter % 100 === 0) {
+      this.spawnTarget();
     }
 
     for (let i = 0; i < this.obstacles.length; i++) {
       const currentObstacle = this.obstacles[i];
       currentObstacle.move();
+
+      if (currentObstacle.x + currentObstacle.width < 0) {
+        this.obstacles.splice(i, 1);
+        currentObstacle.element.remove();
+        this.spawnObstacle();
+        i--;
+      }
 
       const didCollide = this.player.didCollide(currentObstacle);
       console.log("did it collide", didCollide);
@@ -69,6 +85,7 @@ class Game {
         currentObstacle.element.remove();
         this.lives--;
         this.livesElement.innerText = this.lives;
+        this.nazgul.volume = 0.2;
         this.nazgul.play();
       }
     }
@@ -76,6 +93,13 @@ class Game {
     for (let i = 0; i < this.targets.length; i++) {
       const currentTarget = this.targets[i];
       currentTarget.move();
+
+      if (currentTarget.x + currentTarget.width < 0) {
+        this.targets.splice(i, 1);
+        currentTarget.element.remove();
+        this.spawnTarget();
+        i--;
+      }
 
       const didCollideWithTarget = this.player.didCollide(currentTarget);
       console.log("did it collide with target", didCollideWithTarget);
@@ -85,6 +109,7 @@ class Game {
         currentTarget.element.remove();
         this.score += 1;
         this.scoreElement.innerText = this.score;
+        this.orcSound.volume = 0.2;
         this.orcSound.play();
       }
     }
@@ -92,6 +117,57 @@ class Game {
     if (this.lives === 0) {
       console.log("you died, you lost all your lives");
       this.endGame();
+    }
+  }
+
+  spawnObstacle() {
+    let newObstacle;
+    let positionValid = false;
+    let attempts = 0;
+
+    while (!positionValid && attempts < 100) {
+      newObstacle = new Obstacle();
+      positionValid = true;
+
+      for (const existingObstacle of this.obstacles) {
+        if (this.checkCollision(newObstacle, existingObstacle)) {
+          positionValid = false;
+          break;
+        }
+      }
+
+      attempts++;
+    }
+
+    if (positionValid) {
+      this.obstacles.push(newObstacle);
+    } else {
+      console.warn("Could not find a valid position for a new target");
+    }
+  }
+
+  spawnTarget() {
+    let newTarget;
+    let positionValid = false;
+    let attempts = 0;
+
+    while (!positionValid && attempts < 100) {
+      newTarget = new Target();
+      positionValid = true;
+
+      for (const existingTarget of this.targets) {
+        if (this.checkCollision(newTarget, existingTarget)) {
+          positionValid = false;
+          break;
+        }
+      }
+
+      attempts++;
+    }
+    if (positionValid) {
+      this.targets.push(newTarget);
+    } else {
+      console.warn("Could not find a valid position for a new target");
     }
   }
 
@@ -109,6 +185,7 @@ class Game {
     this.gameScreen.style.display = "none";
     this.endScreen.style.display = "block";
     this.finalScoreElement.innerText = this.score;
+    this.urukHaiSong.volume = 0.8;
     this.urukHaiSong.play();
 
     this.finalScoreElement.innerText = this.score;
@@ -117,14 +194,6 @@ class Game {
 
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 let game;
-
-function startGame() {
-  console.log("Start the game");
-
-  game = new Game(); // Initialize the game instance
-
-  game.start();
-}
 
 function updateHighScores(newScore, playerName) {
   highScores.push({ name: playerName, score: newScore });

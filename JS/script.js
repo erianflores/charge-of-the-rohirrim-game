@@ -1,4 +1,6 @@
 const mainSong = new Audio("./Audio/Rohan Theme.mp3");
+const theodenAudio = new Audio("./Audio/And Rohan will answer.m4a");
+const gandalfAudio = new Audio("./Audio/Fly you fools.m4a");
 
 window.onload = function () {
   const startButton = document.getElementById("start-button");
@@ -9,6 +11,7 @@ window.onload = function () {
 
   startButton.addEventListener("click", function () {
     startGame();
+    theodenAudio.play();
   });
 
   restartButton.addEventListener("click", () => {
@@ -17,6 +20,7 @@ window.onload = function () {
 
   soundButton.addEventListener("click", () => {
     if (mainSong.paused) {
+      mainSong.volume = 0.8;
       mainSong.play();
     } else {
       mainSong.pause();
@@ -62,3 +66,9 @@ window.onload = function () {
     myGame.start();
   }
 };
+
+document
+  .getElementById("clickable-area-gandalf")
+  .addEventListener("click", () => {
+    gandalfAudio.play();
+  });

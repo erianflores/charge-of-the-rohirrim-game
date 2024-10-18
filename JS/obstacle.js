@@ -8,8 +8,8 @@ class Obstacle {
     const maxY = 550;
     this.top = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
     this.left = 1000;
-    this.width = 100;
-    this.height = 80;
+    this.width = 120;
+    this.height = 100;
     this.element = document.createElement("img");
     this.element.style.position = "absolute";
     this.element.src = "./Images/Nazgul Fying.png";
@@ -20,7 +20,7 @@ class Obstacle {
     this.gameScreen.appendChild(this.element);
   }
   move() {
-    this.left -= 3;
+    this.left -= 4;
     this.updatePosition();
   }
 
