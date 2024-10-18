@@ -16,7 +16,11 @@ window.onload = function () {
   });
 
   soundButton.addEventListener("click", () => {
-    mainSong.play();
+    if (mainSong.paused) {
+      mainSong.play();
+    } else {
+      mainSong.pause();
+    }
   });
 
   document.addEventListener("keydown", (event) => {
@@ -53,6 +57,7 @@ window.onload = function () {
     console.log("Start the game");
 
     myGame = new Game();
+    game = myGame;
 
     myGame.start();
   }

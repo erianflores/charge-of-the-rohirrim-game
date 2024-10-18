@@ -14,6 +14,7 @@ class Game {
     this.score = 0;
     this.lives = 3;
     this.counter = 0;
+    this.highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
     this.scoreElement = document.querySelector("#score");
     this.livesElement = document.querySelector("#lives");
@@ -104,10 +105,62 @@ class Game {
     this.obstacles.forEach((oneObstacle) => {
       oneObstacle.element.remove();
     });
+
     this.gameScreen.style.display = "none";
     this.endScreen.style.display = "block";
+    this.finalScoreElement.innerText = this.score;
     this.urukHaiSong.play();
 
     this.finalScoreElement.innerText = this.score;
   }
 }
+
+let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+let game;
+
+function startGame() {
+  console.log("Start the game");
+
+  game = new Game(); // Initialize the game instance
+
+  game.start();
+}
+
+function updateHighScores(newScore, playerName) {
+  highScores.push({ name: playerName, score: newScore });
+  highScores = highScores.sort((a, b) => b.score - a.score).slice(0, 3);
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  displayHighScores();
+}
+
+function displayHighScores() {
+  const introTableBody = document.querySelector("#high-scores-intro tbody");
+  const endTableBody = document.querySelector("#high-scores-end tbody");
+  introTableBody.innerHTML = "";
+  endTableBody.innerHTML = "";
+  highScores.forEach((scoreEntry, index) => {
+    const row = `<tr><td>${index + 1}</td><td>${scoreEntry.name}</td><td>${
+      scoreEntry.score
+    }</td></tr>`;
+    introTableBody.innerHTML += row;
+    endTableBody.innerHTML += row;
+  });
+}
+
+document
+  .querySelector("#submit-score-button")
+  .addEventListener("click", function () {
+    const playerName = document.querySelector("#player-name").value;
+    if (playerName === "") {
+      alert("Please enter your name to register your score.");
+      return;
+    }
+    if (game) {
+      updateHighScores(game.score, playerName);
+    } else {
+      console.log("Game instance not found");
+    }
+    document.querySelector("#player-name").value = "";
+  });
+
+displayHighScores();

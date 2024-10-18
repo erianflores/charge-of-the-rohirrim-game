@@ -70,8 +70,8 @@
   border: none;
   outline: none;
   position: absolute;
-  bottom: 40px;
-  left: 80px;
+  top: 20px;
+  right: 30px;
   cursor: pointer;
   padding: 0;
   background-color: transparent;
@@ -118,4 +118,38 @@ p {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+}
+
+#end-screen h2 {
+  color: black;
+  font-size: 40px;
+  text-shadow: 1px 1px 0px white, -1px 1px 0px white, 2px -2px 0px white,
+    -2px -2px 0px white;
+}
+
+#game-intro h2 {
+  color: hsl(49, 94%, 18%);
+  text-shadow: 1px 1px 0px white, -1px 1px 0px white, 2px -2px 0px white,
+    -2px -2px 0px white;
+  position: absolute;
+  bottom: 150px;
+  right: 150px;
+}
+
+table {
+  width: 200px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  right: 130px;
+}
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  background-color: #f2f2f2;
 }
