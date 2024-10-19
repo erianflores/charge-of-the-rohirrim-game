@@ -185,7 +185,7 @@ class Game {
     this.gameScreen.style.display = "none";
     this.endScreen.style.display = "block";
     this.finalScoreElement.innerText = this.score;
-    this.urukHaiSong.volume = 0.8;
+    this.urukHaiSong.volume = 0.2;
     this.urukHaiSong.play();
 
     this.finalScoreElement.innerText = this.score;

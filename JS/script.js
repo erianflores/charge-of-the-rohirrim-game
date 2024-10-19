@@ -11,6 +11,7 @@ window.onload = function () {
 
   startButton.addEventListener("click", function () {
     startGame();
+    theodenAudio.volume = 0.4;
     theodenAudio.play();
   });
 
@@ -20,7 +21,7 @@ window.onload = function () {
 
   soundButton.addEventListener("click", () => {
     if (mainSong.paused) {
-      mainSong.volume = 0.8;
+      mainSong.volume = 0.2;
       mainSong.play();
     } else {
       mainSong.pause();
